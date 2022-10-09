@@ -4,7 +4,8 @@ const loginButton = document.querySelector("#login-form button");
 
 function onLoginBtnClick()
 {
-	alert("login")
+	//console.log(loginInput.value);
+	alert(loginInput.value);
 }
 
-loginButton.addEventListener("click", onLoginBtnClick)
+loginButton.addEventListener("click", onLoginBtnClick);
