@@ -10,10 +10,11 @@
     </head>
     <body>
         <h2 id="clock">00:00:00</h2>
-        <div id="login-form">
-            <input type="text" placeholder="What is your name?" />
-            <button>Login</button>
-        </div>
+        <form id="login-form">
+            <input required maxlength="15" type="text" placeholder="What is your name?" />
+            <input type="submit" value="login"/>
+            <!--<button>Login</button>-->
+        </form>
         <script src='src/login.js'></script>
     </body>
 </html><!DOCTYPE html>
