@@ -1,1 +1,1 @@
-# VnillaJSChallenge.github.io
+# VanillaJSChallenge.github.io
