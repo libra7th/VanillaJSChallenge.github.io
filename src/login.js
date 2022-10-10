@@ -1,27 +1,46 @@
-const loginForm = document.getElementById("login-form");
-const loginInput = document.querySelector("#login-form input");
-//const loginButton = document.querySelector("#login-form button");
+///////////////////////////////////////////////////////////////
+// variable(view object) and handler
+const formLogin	= document.querySelector(".form-login");
+const inputLogin= formLogin.querySelector(".input-login");
+const pGreeting = document.querySelector(".p-greeting");
 
-function onLoginBtnClick()
-{
-	//alert(loginInput.value);
-	const userName = loginInput.value;
-	if ("" === userName)
-	{
-		alert("Please write your name.");
-	}
-	else if( 15 < userName.length )
-	{
-		alert("Input value is too long.")
-	}
-}
+const USER_LS = "currentUser",
+    CSS_HIDDEN = "hidden";
 
-function onLoginSubmit(_event)
+function handleSubmit(_event) 
 {
+	// 기본 동작 막기
 	_event.preventDefault();
-	const userName = loginInput.value;
-	alert(userName)
+	const currentValue = inputLogin.value;
+	localStorage.setItem(USER_LS, currentValue);
+	setStateGreeting(currentValue);
+}
+formLogin.addEventListener("submit", handleSubmit);
+///////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////
+// main process and function
+function mainLogin() 
+{
+	const currentUser = localStorage.getItem(USER_LS);
+	if ( null === currentUser )
+		setStateInput();
+	else
+		setStateGreeting(currentUser);
 }
 
-loginForm.addEventListener("submit", onLoginSubmit);
-//loginButton.addEventListener("click", onLoginBtnClick);
+function setStateInput() 
+{
+    formLogin.classList.remove(CSS_HIDDEN);
+	pGreeting.classList.add(CSS_HIDDEN);
+}
+
+function setStateGreeting(_name)
+{
+    formLogin.classList.add(CSS_HIDDEN);
+    pGreeting.classList.remove(CSS_HIDDEN);
+    pGreeting.innerText = `Welcome ${_name}`;
+}
+
+mainLogin();
+///////////////////////////////////////////////////////////////
