@@ -50,15 +50,15 @@ function askForCoords()
 
 function mainProcess()
 {
-	const loadedCoords = localStorage.getItem(COORDS);
-	if ( null === loadedCoords ) 
+	const defaultCoords = localStorage.getItem(COORDS);
+	if ( null === defaultCoords ) 
 	{
 	    askForCoords();
 	}
 	else
 	{
-	    const parseCoords = JSON.parse(loadedCoords);
-	    getWeather(parseCoords.latitude, parseCoords.longitude);
+	    const jsonCoords = JSON.parse(defaultCoords);
+	    getWeather(jsonCoords.latitude, jsonCoords.longitude);
 	}
 }
 
