@@ -3,32 +3,32 @@ const spanWeather = document.querySelector(".span-weather");
 const COORDS = "coords";
 const API_KEY = "edeac071bfbc9ed26b3bdb25ef285619";
 
-function getWeather(lat, lng) 
+function getWeather(_lat, _lng) 
 {
     fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${_lat}&lon=${_lng}&appid=${API_KEY}&units=metric`
         )
-        .then(function(response)
+        .then(function(_response)
 		{
-            return response.json();
+            return _response.json();
         })
-        .then(function(json)
+        .then(function(_json)
 		{
-            const temperature = json.main.temp;
-            const place = json.name;
+            const temperature = _json.main.temp;
+            const place = _json.name;
             spanWeather.innerText = `${temperature}℃ @ ${place}`;
         });
 }
 
-function saveCoords(coordsObj) 
+function saveCoords(_coords) 
 {
-    localStorage.setItem(COORDS, JSON.stringify(coordsObj));
+    localStorage.setItem(COORDS, JSON.stringify(_coords));
 }
 
-function handleGeoSucces(position) 
+function handleGeoSucces(_coords) 
 {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    const latitude = _coords.coords.latitude;
+    const longitude = _coords.coords.longitude;
     const coordsObj =
 	{
         latitude,
@@ -40,7 +40,8 @@ function handleGeoSucces(position)
 
 function handleGeoError()
 {
-    console.log("Can't access geo location");
+    //console.log("Can't access geo location");
+	alert("Can't access geo location");
 }
 
 function askForCoords()
